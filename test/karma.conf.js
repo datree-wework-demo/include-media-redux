@@ -68,11 +68,6 @@ module.exports = function (config) {
     webpack: webpackClientConfig,
 
     webpackServer: {
-      headers: {},
-      host: 'localhost',
-      port: 8080,
-      enabled: true,
-      compress: true,
       stats: {
         // Config for minimal console.log mess.
         assets: false,
