@@ -1,0 +1,42 @@
+{
+  "name": "include-media-redux",
+  "version": "1.0.0",
+  "description": "An adaption of include-media-export for redux",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wework/include-media-redux.git"
+  },
+  "keywords": [
+    "redux",
+    "include-media",
+    "media queries"
+  ],
+  "author": "WeWork Digital <dev-team@wework.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wework/include-media-redux/issues"
+  },
+  "homepage": "https://github.com/wework/include-media-redux#readme",
+  "peerDependencies": {
+    "redux": "3.6.0"
+  },
+  "devDependencies": {
+    "babel-cli": "6.24.1",
+    "babel-eslint": "7.2.3",
+    "babel-jest": "20.0.0",
+    "babel-plugin-add-module-exports": "0.2.1",
+    "babel-plugin-lodash": "3.2.11",
+    "babel-plugin-transform-object-rest-spread": "6.23.0",
+    "babel-plugin-transform-react-constant-elements": "6.23.0",
+    "babel-plugin-transform-react-pure-class-to-function": "1.0.1",
+    "babel-polyfill": "6.23.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-react-app": "2.2.0",
+    "babel-preset-stage-0": "6.24.1",
+    "babel-register": "6.24.1"
+  }
+}
