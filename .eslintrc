@@ -1,0 +1,31 @@
+{
+  "root": true,
+  "extends": [
+    "wework",
+    "wework/imports"
+  ],
+  "env": {
+    "commonjs": true,
+    "node": true
+  },
+  "globals" : {
+  },
+  "settings": {
+    "import/resolver": "node"
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread" : true
+    }
+  },
+  "rules": {
+    # ensure JSDoc comments are valid
+    "valid-jsdoc": [1, {
+      "requireReturn": false,
+      requireParamDescription: false,
+      requireReturnDescription: false
+    }]
+  },
+}
