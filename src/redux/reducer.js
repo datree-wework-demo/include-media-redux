@@ -1,8 +1,8 @@
-import UPDATE_BREAKPOINTS from './UPDATE_BREAKPOINTS';
 import get from 'lodash/get';
 import isPlainObject from 'lodash/isPlainObject';
+import { isFSA } from 'flux-standard-action';
 import media from '../media';
-import { isFSA } from 'flux-standard-action'
+import UPDATE_BREAKPOINTS from './UPDATE_BREAKPOINTS';
 
 // If combining with another reducer, you will need to set the initial state there.
 const initialState = {
@@ -11,7 +11,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case UPDATE_BREAKPOINTS:
+    case UPDATE_BREAKPOINTS: {
       if (media.config.debug && !isFSA(action)) {
         media.config.log.warn(
           'Not dispatching a Flux standard action.',
@@ -32,6 +32,7 @@ export default function(state = initialState, action) {
         ...state,
         breakpoints,
       };
+    }
     default:
       return state;
   }

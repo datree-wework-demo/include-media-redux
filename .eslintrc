@@ -10,8 +10,6 @@
     "commonjs": true,
     "node": true
   },
-  "globals" : {
-  },
   "settings": {
     "import/resolver": "node"
   },

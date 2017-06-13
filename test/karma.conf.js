@@ -1,8 +1,7 @@
-require('babel-register');
 const webpackClientConfig = require('./webpack.client.config');
 const saucelabsBrowsers = require('./saucelabs-browsers.json').browsers;
 
-module.exports = function (config) {
+module.exports = function(config) {
   // Default
   let browsers = ['PhantomJS'];
   // Saucelabs run
@@ -22,7 +21,7 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: browsers,
+    browsers,
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
@@ -37,9 +36,7 @@ module.exports = function (config) {
     frameworks: ['mocha', 'sinon-chai'],
 
     // list of files / patterns to load in the browser
-    files: [
-      'browser.index.js',
-    ],
+    files: ['browser.index.js'],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor

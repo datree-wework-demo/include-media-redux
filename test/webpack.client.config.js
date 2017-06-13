@@ -3,20 +3,15 @@ const path = require('path');
 module.exports = {
   devtool: 'inline-source-map',
   module: {
-    noParse: [
-      /node_modules(\\|\/)sinon/,
-    ],
+    noParse: [/node_modules(\\|\/)sinon/],
     loaders: [
       {
         test: /\.json$/,
         loader: 'json-loader',
       },
       {
-        test: /\.js$/,
-        include: [
-          path.resolve(__dirname, '../src'),
-          path.resolve(__dirname, './specs'),
-        ],
+        test: /\.jsx?$/,
+        include: [path.resolve(__dirname, '../src'), path.resolve(__dirname)],
         loader: 'babel-loader',
       },
     ],

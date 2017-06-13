@@ -6,9 +6,9 @@ import isPlainObject from 'lodash/isPlainObject';
 import read from './read';
 import is from './is';
 
-/**
-* Sets up the configuration for include-media-redux
-*/
+/*
+ * Sets up the configuration for include-media-redux
+ */
 function media(config) {
   if (isPlainObject(config)) {
     media.config = {
@@ -18,13 +18,13 @@ function media(config) {
   }
 }
 
-media.read = (viewportWidth) => {
-  const newBreakpointData = read(viewportWidth, media.config.breakpoints)
+media.read = viewportWidth => {
+  const newBreakpointData = read(viewportWidth, media.config.breakpoints);
   media.config.log.trace({ newBreakpointData }, 'Updated breakpoints');
   return newBreakpointData;
 };
 
-media.is = (state) => {
+media.is = state => {
   const breakpointData = media.config.selector(state);
 
   if (media.config.debug) {
@@ -34,11 +34,11 @@ media.is = (state) => {
       if (!includes(breakpointNames, name)) {
         media.config.log.warn(`Breakpoint ${name} is not included in `, media.config.breakpoints);
       }
-    })
+    });
   }
 
   return is(breakpointData);
-}
+};
 
 // Example breakpoint data. This should be customized on a per app basis.
 export const DEFAULT_BREAKPOINTS = {

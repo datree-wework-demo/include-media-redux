@@ -1,5 +1,4 @@
 require('babel-register');
-const _ = require('lodash');
 require('./runner');
 
 // require all `/test/specs/**/*.spec.js`

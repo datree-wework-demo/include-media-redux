@@ -1,33 +1,30 @@
 import React from 'react';
-import withmedia from '../../../src/withmedia';
-import media, { DEFAULT_CONFIG } from '../../../src/media';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducer from '../../../src/redux/reducer';
 import { mount } from 'enzyme';
+import { createStore } from 'redux';
+import { keys, noop } from 'lodash';
+import withMedia from '../../../src/withMedia';
+import media, { DEFAULT_CONFIG } from '../../../src/media';
+import reducer from '../../../src/redux/reducer';
 import UPDATE_BREAKPOINTS from '../../../src/redux/UPDATE_BREAKPOINTS';
-import keys from 'lodash/keys';
 import * as listenerModule from '../../../src/listener';
-import noop from 'lodash/noop';
 
-describe('withmedia', () => {
+describe('withMedia', () => {
   let Component;
   let log;
   let breakpoints;
   let EnhancedComponent;
-  let StoreWrappedComponent;
   let store;
-  let dispatch;
   let debounceDelay;
-  let addEventListener;
-  let removeEventListener;
   let fakeListener;
 
-  const mountComponent = (ComponentToWrap, store) => mount(
-    <Provider store={store}>
-      <ComponentToWrap />
-    </Provider>
-  );
+  const mountComponent = (ComponentToWrap, passedInStore) =>
+    mount(
+      // eslint-disable-next-line react/jsx-filename-extension
+      <Provider store={passedInStore}>
+        <ComponentToWrap />
+      </Provider>
+    );
 
   beforeEach(() => {
     fakeListener = noop;
@@ -53,11 +50,13 @@ describe('withmedia', () => {
 
     store = createStore(reducer, { breakpoints: {} });
     sinon.stub(store, 'dispatch').callThrough();
+    /* eslint-disable no-undef */
     sinon.stub(window, 'addEventListener').callThrough();
     sinon.stub(window, 'removeEventListener').callThrough();
+    /* eslint-enable */
 
-    Component = (props) => <div>Oh hai</div>;
-    EnhancedComponent = withmedia(Component);
+    Component = props => <div>Oh hai</div>;
+    EnhancedComponent = withMedia(Component);
   });
 
   afterEach(() => {
@@ -67,7 +66,7 @@ describe('withmedia', () => {
   it('should dispatch the breakpoint data to the redux store on componentDidMount', () => {
     mountComponent(EnhancedComponent, store);
 
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       setTimeout(() => {
         expect(store.dispatch).to.have.been.calledOnce;
         const { type, payload } = store.dispatch.getCall(0).args[0];
@@ -79,13 +78,14 @@ describe('withmedia', () => {
         expect(keys(payload.breakpoints)).to.include('md');
         expect(keys(payload.breakpoints)).to.include('mdEqual');
         resolve();
-      }, debounceDelay * 2)
+      }, debounceDelay * 2);
     });
   });
 
   it('should add an event listener to the window on resize when the component mounts', () => {
     sinon.stub(listenerModule, 'default').returns(fakeListener);
     mountComponent(EnhancedComponent, store);
+    // eslint-disable-next-line no-undef
     expect(window.addEventListener).to.have.been.calledWith('resize', fakeListener);
   });
 
@@ -93,6 +93,7 @@ describe('withmedia', () => {
     sinon.stub(listenerModule, 'default').returns(fakeListener);
     const wrapper = mountComponent(EnhancedComponent, store);
     wrapper.unmount();
+    // eslint-disable-next-line no-undef
     expect(window.removeEventListener).to.have.been.calledWith('resize', fakeListener);
   });
 });

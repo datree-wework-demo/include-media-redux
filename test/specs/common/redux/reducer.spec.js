@@ -1,8 +1,8 @@
+import { createStore, combineReducers } from 'redux';
+import reduceReducers from 'reduce-reducers';
 import breakpointsReducer from '../../../../src/redux/reducer';
 import UPDATE_BREAKPOINTS from '../../../../src/redux/UPDATE_BREAKPOINTS';
 import media, { DEFAULT_CONFIG } from '../../../../src/media';
-import { createStore, combineReducers } from 'redux';
-import reduceReducers from 'reduce-reducers';
 
 const appInitialState = {
   initialized: false,
@@ -32,7 +32,7 @@ describe('reducer', () => {
 
   beforeEach(() => {
     log = { warn: sinon.spy() };
-    store = createStore(rootReducer)
+    store = createStore(rootReducer);
     media({ ...DEFAULT_CONFIG, debug: true, log });
   });
 
@@ -44,7 +44,7 @@ describe('reducer', () => {
     expect(store.getState()).to.deep.eql({
       app: {
         initialized: false,
-        breakpoints: {}
+        breakpoints: {},
       },
     });
   });

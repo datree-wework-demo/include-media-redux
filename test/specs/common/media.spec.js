@@ -1,6 +1,5 @@
-import media, { DEFAULT_BREAKPOINTS, DEFAULT_CONFIG } from '../../../src/media.js';
-import noop from 'lodash/noop';
-import get from 'lodash/get';
+import { get, noop } from 'lodash/noop';
+import media, { DEFAULT_BREAKPOINTS, DEFAULT_CONFIG } from '../../../src/media';
 
 describe('media', () => {
   beforeEach(() => {
@@ -17,7 +16,7 @@ describe('media', () => {
         expect(media.config.debug).to.be.false;
         expect(media.config.log).to.eql(console);
         expect(media.config.breakpoints).to.eql(DEFAULT_BREAKPOINTS);
-        expect(media.config.selector).to.be.a('function')
+        expect(media.config.selector).to.be.a('function');
         expect(media.config.debounceDelay).to.eql(100);
       });
 
@@ -28,7 +27,7 @@ describe('media', () => {
           debug: noop,
           error: noop,
           trace: noop,
-        }
+        };
 
         const newBreakpoints = {
           tiny: 0,
@@ -37,7 +36,7 @@ describe('media', () => {
           lg: 1200,
         };
 
-        const newSelector = (state) => get(state, 'app.breakpoints');
+        const newSelector = state => get(state, 'app.breakpoints');
 
         media({
           debug: true,
@@ -58,7 +57,7 @@ describe('media', () => {
 
   describe('#read', () => {
     let log;
-    let newBreakpointData
+    let newBreakpointData;
 
     beforeEach(() => {
       log = {
@@ -86,8 +85,9 @@ describe('media', () => {
     });
 
     it('should trace log the update', () => {
-      media.read(300)
-      expect(log.trace).to.have.been.calledWith;({ newBreakpointData }, 'Updated breakpoints');
+      media.read(300);
+      expect(log.trace).to.have.been.calledWith;
+      ({ newBreakpointData }, 'Updated breakpoints');
     });
   });
 
@@ -95,7 +95,6 @@ describe('media', () => {
     let log;
     let breakpoints;
     let breakpointData;
-
 
     beforeEach(() => {
       breakpoints = {
@@ -109,7 +108,7 @@ describe('media', () => {
       };
 
       media({
-       debug: true,
+        debug: true,
         log,
         breakpoints,
       });

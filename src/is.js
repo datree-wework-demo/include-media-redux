@@ -15,8 +15,8 @@
  * is(breakpointData).lessThan().orEqualTo('sm');
  * ```
  *
- * @param {Object.<string, boolean>} Takes in breakpoint data and a media breakpoint as a string
- *                                   and returns whether the current screen size is less than,
+ * @param {Object.<string, boolean>} passedInBreakpoints - Takes in breakpoint data and a media breakpoint
+ *                                   as a string and returns whether the current screen size is less than,
  *                                   greater than or equal to that media breakpoint.
  * @return {(boolean|this)}
  */
@@ -37,10 +37,7 @@ export default function is(passedInBreakpoints) {
       return { ...this, type: 'greaterThan' };
     },
     orEqualTo(breakpoint) {
-      return (
-        passedInBreakpoints[`${breakpoint}Equal`] ||
-        this[this.type](breakpoint)
-      );
+      return passedInBreakpoints[`${breakpoint}Equal`] || this[this.type](breakpoint);
     },
   };
 }

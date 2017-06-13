@@ -1,4 +1,4 @@
-import debouncedListener, { listener } from '../../../src/listener';
+import listener from '../../../src/listener';
 import media, { DEFAULT_CONFIG } from '../../../src/media';
 import UPDATE_BREAKPOINTS from '../../../src/redux/UPDATE_BREAKPOINTS';
 
@@ -15,7 +15,8 @@ describe('#listener', () => {
     media(DEFAULT_CONFIG);
   });
 
-  describe('debouncedListener', () => {
+  describe('listener', () => {
+    // eslint-disable-next-line no-undef
     sinon.stub(document.documentElement, 'clientWidth').returns(301);
     debounceDelay = 500;
     beforeEach(() => {
@@ -29,11 +30,11 @@ describe('#listener', () => {
     });
 
     it('should not call the listener function twice if called twice in quick succession', () => {
-      const listenerToCall = debouncedListener(dispatch);
+      const listenerToCall = listener(dispatch);
       listenerToCall();
       listenerToCall();
 
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           expect(dispatch).to.have.been.calledWith({
             type: UPDATE_BREAKPOINTS,
@@ -48,16 +49,16 @@ describe('#listener', () => {
           }).once;
           resolve();
         }, debounceDelay * 2);
-      })
+      });
     });
 
     it('should call the listener twice if the calls are properly spaced out', () => {
       debounceDelay = 100;
       media({ debounceDelay });
-      const listenerToCall = debouncedListener(dispatch);
+      const listenerToCall = listener(dispatch);
       listenerToCall();
 
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           listenerToCall();
 
