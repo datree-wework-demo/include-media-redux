@@ -128,7 +128,7 @@ $ yarn dist
 We're using `np` to simplify publishing to git + npm. A changelog and docs are generated as part of this script.
 
 ```shell
-$ npm run release <semver level/version>
-$ npm run release patch # patch release
-$ npm run release 100.10.1 # release specific version
+$ yarn release <semver level/version>
+$ yarn release patch # patch release
+$ yarn release 100.10.1 # release specific version
 ```
