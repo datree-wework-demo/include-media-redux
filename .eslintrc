@@ -2,7 +2,9 @@
   "root": true,
   "extends": [
     "wework",
-    "wework/imports"
+    "wework/imports",
+    "prettier",
+    "prettier/react"
   ],
   "env": {
     "commonjs": true,
