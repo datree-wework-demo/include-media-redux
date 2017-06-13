@@ -9,6 +9,7 @@
     "lint": "eslint --format ./node_modules/eslint-friendly-formatter --cache src test",
     "lint:staged": "eslint --format ./node_modules/eslint-friendly-formatter --cache",
     "precommit": "lint-staged",
+    "prepush": "yarn security-scan",
     "pretest": "yarn bundle",
     "prettier": "prettier --trailing-comma es5 --single-quote --print-width 120 --write",
     "preversion": "yarn dist",
