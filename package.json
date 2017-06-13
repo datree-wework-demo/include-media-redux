@@ -49,15 +49,15 @@
   },
   "homepage": "https://github.com/wework/include-media-redux#readme",
   "peerDependencies": {
-    "react": "15.3.0",
-    "react-redux": "5.0.5",
-    "redux": "3.6.0"
+    "react": "15.3.x",
+    "react-redux": "5.x.x",
+    "redux": "3.x.x"
   },
   "dependencies": {
-    "flux-standard-action": "1.2.0",
-    "hoist-non-react-statics": "1.2.0",
-    "lodash": "4.17.4",
-    "react-redux": "5.0.5"
+    "flux-standard-action": "1.x.x",
+    "hoist-non-react-statics": "1.x.x",
+    "lodash": "4.x.x",
+    "react-redux": "5.x.x"
   },
   "lint-staged": {
     "*.{js,jsx}": [
