@@ -1,43 +1,62 @@
 /**
- * Given a breakpoint data object, returns whether the current screen size
- * is less than, greater than or equal to a given media breakpoint. You can also
+ * Given a redux store, returns whether the current screen size is less
+ * than, greater than or equal to a given media breakpoint. You can also
  * compound the query. For example, to find out if the current viewport is less
  * than `sm` you would simple write:
  *
  * ```js
- * is(breakpointData).lessThan('sm');
+ * is.lessThan('sm');
  * ```
  *
  * If you want to know if the current viewport is less than OR equal
  * `sm` you'd write:
  *
  * ```js
- * is(breakpointData).lessThan().orEqualTo('sm');
+ * is.lessThan.orEqualTo('sm');
  * ```
  *
- * @param {Object.<string, boolean>} passedInBreakpoints - Takes in breakpoint data and a media breakpoint
- *                                   as a string and returns whether the current screen size is less than,
- *                                   greater than or equal to that media breakpoint.
- * @return {(boolean|this)}
+ * @param {function} getSelector - A function that returns a selector that should grab the breakpoint data
+ *                                 in the redux store.
+ * @return {boolean}
  */
-export default function is(passedInBreakpoints) {
-  return {
-    lessThan(breakpoint) {
-      if (breakpoint) {
-        return !passedInBreakpoints[breakpoint];
-      }
+const callCallbacks = getSelector => callback => state => {
+  const breakpointData = getSelector()(state);
+  const callbacks = [].concat(callback);
+  for (let i = 0; i < callbacks.length; i += 1) {
+    const someCallbackValue = callbacks[i](breakpointData);
+    if (someCallbackValue) return true;
+  }
 
-      return { ...this, type: 'lessThan' };
-    },
-    greaterThan(breakpoint) {
-      if (breakpoint) {
-        return !this.lessThan(breakpoint);
-      }
+  return false;
+};
 
-      return { ...this, type: 'greaterThan' };
-    },
-    orEqualTo(breakpoint) {
-      return passedInBreakpoints[`${breakpoint}Equal`] || this[this.type](breakpoint);
-    },
-  };
+const lessThanCallback = breakpoint => breakpointData => {
+  return !breakpointData[breakpoint];
+};
+
+const greaterThanCallback = breakpoint => breakpointData => {
+  return breakpointData[breakpoint];
+};
+
+const orEqualToCallback = breakpoint => breakpointData => {
+  return breakpointData[`${breakpoint}Equal`];
+};
+
+function lessThan(breakpoint) {
+  return callCallbacks(this.getSelector)(lessThanCallback(breakpoint));
 }
+
+function greaterThan(breakpoint) {
+  return callCallbacks(this.getSelector)(greaterThanCallback(breakpoint));
+}
+
+function orEqualTo(ancillaryCallback, breakpoint) {
+  return callCallbacks(this.getSelector)([orEqualToCallback(breakpoint), ancillaryCallback(breakpoint)]);
+}
+
+const is = { lessThan, greaterThan };
+
+lessThan.orEqualTo = orEqualTo.bind(is, lessThanCallback);
+greaterThan.orEqualTo = orEqualTo.bind(is, greaterThanCallback);
+
+export default is;

@@ -92,9 +92,8 @@ describe('media', () => {
   });
 
   describe('#is', () => {
-    let log;
     let breakpoints;
-    let breakpointData;
+    let state;
 
     beforeEach(() => {
       breakpoints = {
@@ -102,60 +101,20 @@ describe('media', () => {
         md: 400,
       };
 
-      log = {
-        warn: sinon.spy(),
-        trace: noop,
-      };
-
-      media({
-        debug: true,
-        log,
-        breakpoints,
-      });
+      media({ breakpoints });
     });
 
-    describe('with debug on', () => {
-      describe('with breakpoint data', () => {
-        beforeEach(() => {
-          breakpointData = { breakpoints: media.read(301) };
-        });
-
-        it('should not be less than sm', () => {
-          expect(media.is(breakpointData).lessThan('sm')).to.be.false;
-        });
-
-        it('should not log a warning', () => {
-          media.is(breakpointData).lessThan('sm');
-          expect(log.warn).to.not.have.been.called;
-        });
-      });
-
-      describe('with invalid breakpoint data', () => {
-        beforeEach(() => {
-          breakpointData = { breakpoints: { foo: false } };
-        });
-
-        it('should log a warning', () => {
-          media.is(breakpointData).lessThan('foo');
-          expect(log.warn).to.have.been.calledWith('Breakpoint foo is not included in ', breakpoints);
-        });
-      });
-    });
-
-    describe('with debug off', () => {
+    describe('with breakpoint data', () => {
       beforeEach(() => {
-        media({ debug: false });
+        state = { breakpoints: media.read(301) };
       });
 
-      describe('with invalid breakpoint data', () => {
-        beforeEach(() => {
-          breakpointData = { foo: false };
-        });
+      it('should not be less than sm', () => {
+        expect(media.is.lessThan('sm')(state)).to.be.false;
+      });
 
-        it('should not log a warning', () => {
-          media.is(breakpointData).lessThan('sm');
-          expect(log.warn).to.not.have.been.called;
-        });
+      it('should be greater than sm', () => {
+        expect(media.is.greaterThan('sm')(state)).to.be.true;
       });
     });
   });

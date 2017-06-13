@@ -1,6 +1,4 @@
 import get from 'lodash/get';
-import each from 'lodash/each';
-import includes from 'lodash/includes';
 import isPlainObject from 'lodash/isPlainObject';
 
 import read from './read';
@@ -24,21 +22,8 @@ media.read = viewportWidth => {
   return newBreakpointData;
 };
 
-media.is = state => {
-  const breakpointData = media.config.selector(state);
-
-  if (media.config.debug) {
-    const breakpointNames = Object.keys(media.config.breakpoints);
-    each(breakpointData, (_, breakpointName) => {
-      const name = breakpointName.replace(/^(.+)(Equal)$/, '$1');
-      if (!includes(breakpointNames, name)) {
-        media.config.log.warn(`Breakpoint ${name} is not included in `, media.config.breakpoints);
-      }
-    });
-  }
-
-  return is(breakpointData);
-};
+media.is = is;
+media.is.getSelector = () => media.config.selector;
 
 // Example breakpoint data. This should be customized on a per app basis.
 export const DEFAULT_BREAKPOINTS = {
