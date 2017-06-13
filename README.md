@@ -32,7 +32,6 @@ export default connect(state => ({
 }))(Content);
 
 // App.jsx
-
 import React from 'react';
 import { withMedia } from 'include-media-redux';
 import Content from './Content.jsx';
@@ -42,17 +41,18 @@ function App() {
 }
 
 // `withMedia` registers the `resize` listeners on `window` and updates the redux store.
+// Needs to be nested within a `react-redux` `Provider`.
 export default withMedia(App);
 
 // Root.jsx
 import React from 'react';
 import { Provider } from 'react';
-import App from './App.jsx';
 import { createStore } from 'redux';
-import { reducer } from 'include-media-redux';
-import { media } from 'include-media-redux';
+import { media, reducer } from 'include-media-redux';
+import App from './App.jsx';
 
-// Configure your breakpoints
+// Configure your breakpoints. Should be the same breakpoints used for
+// the `include-media` Sass library.
 media({
   breakpoints: {
     sm: 300,
