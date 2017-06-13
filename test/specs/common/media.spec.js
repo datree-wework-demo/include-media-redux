@@ -118,7 +118,7 @@ describe('media', () => {
     describe('with debug on', () => {
       describe('with breakpoint data', () => {
         beforeEach(() => {
-          breakpointData = media.read(301);
+          breakpointData = { breakpoints: media.read(301) };
         });
 
         it('should not be less than sm', () => {
@@ -133,7 +133,7 @@ describe('media', () => {
 
       describe('with invalid breakpoint data', () => {
         beforeEach(() => {
-          breakpointData = { foo: false };
+          breakpointData = { breakpoints: { foo: false } };
         });
 
         it('should log a warning', () => {

@@ -24,7 +24,9 @@ media.read = (viewportWidth) => {
   return newBreakpointData;
 };
 
-media.is = (breakpointData) => {
+media.is = (state) => {
+  const breakpointData = media.config.selector(state);
+
   if (media.config.debug) {
     const breakpointNames = Object.keys(media.config.breakpoints);
     each(breakpointData, (_, breakpointName) => {
