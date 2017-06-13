@@ -30,7 +30,7 @@ module.exports = function (config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity,
+    concurrency: 2,
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -65,7 +65,15 @@ module.exports = function (config) {
       showDiff: 'true',
     },
 
-    webpack: webpackClientConfig,
+    webpack: Object.assign(webpackClientConfig, {
+      externals: {
+        'react/addons': true,
+        'react/lib/ReactContext': true,
+        'react/lib/ExecutionEnvironment': true,
+        'react-dom/test-utils': true,
+        'react-test-renderer/shallow': true,
+      },
+    }),
 
     webpackServer: {
       stats: {

@@ -1,1 +1,23 @@
+npm-debug.log
 node_modules
+coverage
+.nyc_output
+.DS_Store
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# ESLint Cache
+.eslintcache
+
+include-media-redux.js
+include-media-redux.js.map
