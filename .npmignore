@@ -3,5 +3,6 @@
 # directory, API.md, CHANGELOG.md
 
 !dist/*
-!CHANGELOG.mdgs
+!CHANGELOG.md
+!README.md
 !package.json
