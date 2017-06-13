@@ -2,7 +2,7 @@
   "name": "include-media-redux",
   "version": "1.0.0",
   "description": "An adaption of include-media-export for redux",
-  "main": "include-media-redux.js",
+  "main": "dist/include-media-redux.js",
   "scripts": {
     "bundle": "BABEL_DISABLE_CACHE=1 rollup -c --environment client",
     "dist": "yarn bundle && yarn lint",
@@ -13,21 +13,23 @@
     "pretest": "yarn bundle",
     "prettier": "prettier --trailing-comma es5 --single-quote --print-width 120 --write",
     "preversion": "yarn dist",
+    "release": "np",
     "security-scan": "nsp check --output summary --warn-only",
+    "start": "yarn test && yarn dist",
     "test": "npm-run-all --parallel test:*:once",
     "tdd": "npm-run-all --parallel test:*:tdd",
     "test:browser:once": "BABEL_DISABLE_CACHE=1 NODE_ENV=test karma start test/karma.conf.js --no-auto-watch --single-run",
     "test:browser:tdd": "BABEL_DISABLE_CACHE=1 NODE_ENV=test karma start test/karma.conf.js --auto-watch --no-single-run",
     "test:node:once": "BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc mocha test/runner test/specs/common/*.spec.js test/specs/common/**/*.spec.js",
-    "test:node:tdd": "yarn test:node:once -- --cache --watch"
+    "test:node:tdd": "yarn test:node:once -- --cache --watch",
+    "version": "auto-changelog --template compact --package; git add CHANGELOG.md"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wework/include-media-redux.git"
   },
   "files": [
-    "include-media-redux.js",
-    "API.md",
+    "dist/",
     "CHANGELOG.md"
   ],
   "keywords": [
@@ -41,6 +43,9 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/wework/include-media-redux/issues"
+  },
+  "engines": {
+    "node": ">=6.0"
   },
   "homepage": "https://github.com/wework/include-media-redux#readme",
   "peerDependencies": {

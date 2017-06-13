@@ -9,10 +9,10 @@ export default {
   entry: `src/index.js`,
   targets: [
     {
-      dest: 'include-media-redux.js',
-      sourceMap: 'include-media-redux.js.map',
-      format: 'umd'
-    }
+      dest: 'dist/include-media-redux.js',
+      sourceMap: 'dist/include-media-redux.js.map',
+      format: 'umd',
+    },
   ],
   amd: {
     id: pkgName,
@@ -23,20 +23,14 @@ export default {
       exclude: './node_modules/**',
       moduleIds: true,
       babelrc: false,
-      presets: [
-        [ 'es2015', { 'modules': false } ],
-        'stage-0',
-        'react',
-      ],
-      plugins: [
-        'external-helpers',
-      ],
+      presets: [['es2015', { modules: false }], 'stage-0', 'react'],
+      plugins: ['external-helpers'],
     }),
 
     cleanup({
-      comments: ['some', 'jsdoc']
+      comments: ['some', 'jsdoc'],
     }),
 
-    filesize()
-  ]
+    filesize(),
+  ],
 };

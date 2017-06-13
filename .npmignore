@@ -1,0 +1,7 @@
+
+# Don't publish anything to npm but package.json, the dist
+# directory, API.md, CHANGELOG.md
+
+!dist/*
+!CHANGELOG.mdgs
+!package.json
