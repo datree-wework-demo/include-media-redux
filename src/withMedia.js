@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import hoistStatics from 'hoist-non-react-statics';
 import { connect } from 'react-redux';
 import listener from './listener';
 import media from './media';
 
-const withMedia = Component => {
-  class EnhancedWithMedia extends PureComponent {
+const withMedia = ComposedComponent => {
+  class EnhancedWithMedia extends Component {
     constructor(props) {
       super(props);
       // eslint-disable-next-line react/prop-types
@@ -28,12 +28,12 @@ const withMedia = Component => {
 
     render() {
       // eslint-disable-next-line react/jsx-filename-extension
-      return <Component {...this.props} />;
+      return <ComposedComponent {...this.props} />;
     }
   }
 
   const EnhancedComponent = connect(null, null, null, { pure: false })(EnhancedWithMedia);
-  return hoistStatics(EnhancedComponent, Component);
+  return hoistStatics(EnhancedComponent, ComposedComponent);
 };
 
 export default withMedia;
