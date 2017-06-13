@@ -1,6 +1,6 @@
 {
   "name": "include-media-redux",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "An adaption of include-media-export for redux",
   "main": "dist/include-media-redux.js",
   "scripts": {
