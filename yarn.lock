@@ -3082,7 +3082,7 @@ https-proxy-agent@^1.0.0:
     debug "2"
     extend "3"
 
-husky@^0.13.1, husky@^0.13.4:
+husky@0.13.4, husky@^0.13.1:
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/husky/-/husky-0.13.4.tgz#48785c5028de3452a51c48c12c4f94b2124a1407"
   dependencies:
