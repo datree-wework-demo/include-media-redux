@@ -32,7 +32,7 @@ const withMedia = Component => {
     }
   }
 
-  const EnhancedComponent = connect()(EnhancedWithMedia);
+  const EnhancedComponent = connect(null, null, null, { pure: false })(EnhancedWithMedia);
   return hoistStatics(EnhancedComponent, Component);
 };
 
