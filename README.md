@@ -46,7 +46,7 @@ export default withMedia(App);
 
 // Root.jsx
 import React from 'react';
-import { Provider } from 'react';
+import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { media, reducer } from 'include-media-redux';
 import App from './App.jsx';
