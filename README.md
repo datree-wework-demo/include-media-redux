@@ -29,7 +29,7 @@ function Content({ lessThanMd }) {
 
 export default connect(state => ({
   lessThanMd: media.is(state).lessThan('md'),
-}))
+}))(Content);
 
 // App.jsx
 
