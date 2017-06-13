@@ -28,7 +28,7 @@ function Content({ lessThanMd }) {
 }
 
 export default connect(state => ({
-  lessThanMd: media.is(state).lessThan('md'),
+  lessThanMd: media.is.lessThan('md')(state),
 }))(Content);
 
 // App.jsx
@@ -112,12 +112,6 @@ Runs browser and node tests in watch mode, re-bundles on src file change
 $ yarn tdd
 ```
 
-### Docs
-Regenerate `API.md` docs from JSDoc comments
-```shell
-$ yarn docs
-```
-
 ### Bundle
 Packages client and node bundles for distribution, output to `/dist`
 ```shell
@@ -125,7 +119,7 @@ $ yarn bundle
 ```
 
 ### Distribute
-Lints, cleans, bundles, and generates docs for distribution
+Lints, cleans, and bundles for distribution
 ```shell
 $ yarn dist
 ```

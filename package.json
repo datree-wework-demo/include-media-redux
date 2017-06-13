@@ -5,9 +5,14 @@
   "main": "include-media-redux.js",
   "scripts": {
     "bundle": "BABEL_DISABLE_CACHE=1 rollup -c --environment client",
-    "lint": "eslint --format ./node_modules/eslint-friendly-formatter --cache",
+    "dist": "yarn bundle && yarn lint",
+    "lint": "eslint --format ./node_modules/eslint-friendly-formatter --cache src test",
+    "lint:staged": "eslint --format ./node_modules/eslint-friendly-formatter --cache",
     "precommit": "lint-staged",
+    "pretest": "yarn bundle",
     "prettier": "prettier --trailing-comma es5 --single-quote --print-width 120 --write",
+    "preversion": "yarn dist",
+    "security-scan": "nsp check --output summary --warn-only",
     "test": "npm-run-all --parallel test:*:once",
     "tdd": "npm-run-all --parallel test:*:tdd",
     "test:browser:once": "BABEL_DISABLE_CACHE=1 NODE_ENV=test karma start test/karma.conf.js --no-auto-watch --single-run",
@@ -53,10 +58,6 @@
       "prettier",
       "lint",
       "git add"
-    ],
-    "*.md": [
-      "doctoc",
-      "git add"
     ]
   },
   "devDependencies": {
@@ -83,6 +84,7 @@
     "eslint-config-wework": "2.0.0",
     "eslint-friendly-formatter": "3.0.0",
     "eslint-plugin-mocha": "4.9.0",
+    "husky": "0.13.4",
     "imports-loader": "0.7.1",
     "json-loader": "0.5.4",
     "karma": "1.7.0",
@@ -95,6 +97,8 @@
     "karma-webpack": "2.0.3",
     "lint-staged": "3.6.1",
     "mocha": "3.4.2",
+    "np": "2.16.0",
+    "nsp": "2.6.3",
     "nyc": "11.0.2",
     "path": "0.12.7",
     "prettier": "1.4.4",
