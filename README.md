@@ -5,7 +5,7 @@ include-media-redux
 
 # Introduction
 
-This library is intended to make JS and CSS speak the same language when it comes to media queries. It is heavily inspired by [`include-media-export`](https://github.com/eduardoboucas/include-media-export). Using this library makes the assumes that you are:
+This library is intended to make JS and CSS speak the same language when it comes to media queries. It is heavily inspired by [`include-media-export`](https://github.com/eduardoboucas/include-media-export). Using this library assumes that you are:
 
 - already using [`include-media`](https://github.com/eduardoboucas/include-media) to declare your breakpoints
 - writing your CSS in Sass
