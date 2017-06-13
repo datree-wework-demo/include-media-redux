@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 /**
  * Given a redux store, returns whether the current screen size is less
  * than, greater than or equal to a given media breakpoint. You can also
@@ -31,15 +33,15 @@ const callCallbacks = getSelector => callback => state => {
 };
 
 const lessThanCallback = breakpoint => breakpointData => {
-  return !breakpointData[breakpoint];
+  return !get(breakpointData, breakpoint);
 };
 
 const greaterThanCallback = breakpoint => breakpointData => {
-  return breakpointData[breakpoint];
+  return !!get(breakpointData, breakpoint);
 };
 
 const orEqualToCallback = breakpoint => breakpointData => {
-  return breakpointData[`${breakpoint}Equal`];
+  return !!get(breakpointData, `${breakpoint}Equal`);
 };
 
 function lessThan(breakpoint) {
