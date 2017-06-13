@@ -41,6 +41,7 @@ function App() {
   return <div><Content /></div>;
 }
 
+// `withMedia` registers the `resize` listeners on `window` and updates the redux store.
 export default withMedia(App);
 
 // Root.jsx
