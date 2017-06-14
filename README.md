@@ -7,8 +7,6 @@ include-media-redux
 [![NPM downloads][npm-downloads-image]][npm-url]
 [![MIT License][license-image]][license-url]
 
-[![Sauce Test Status][saucelabs-image]][saucelabs-url]
-
 >An adaptation of include-media-exports for redux.
 
 # Introduction
@@ -106,7 +104,7 @@ $ yarn test:browser:once
 
 Runs browser tests via SauceLabs only
 ```shell
-$ SAUCELABS=true yarn test:browser
+$ SAUCELABS=true yarn test:browser:once
 ```
 
 Runs node tests only
