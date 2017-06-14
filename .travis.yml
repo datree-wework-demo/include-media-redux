@@ -6,6 +6,7 @@ branches:
   only:
     - master
     - /^greenkeeper-.*$/
+    - /^greenkeeper/.*$/
 
 before_script:
     - "npm install --global yarn"
