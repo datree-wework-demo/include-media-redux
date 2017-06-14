@@ -1,6 +1,8 @@
 include-media-redux
 ====================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/wework/include-media-redux.svg)](https://greenkeeper.io/)
+
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
 [![NPM version][npm-version-image]][npm-url]
