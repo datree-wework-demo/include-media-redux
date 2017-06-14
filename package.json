@@ -15,7 +15,7 @@
     "preversion": "yarn dist",
     "release": "np",
     "security-scan": "nsp check --output summary --warn-only",
-    "start": "yarn test && yarn dist",
+    "start": "yarn test",
     "test": "npm-run-all --parallel test:*:once",
     "test:ci": "npm-run-all test:browser:once test:node:ci",
     "tdd": "npm-run-all --parallel test:*:tdd",
