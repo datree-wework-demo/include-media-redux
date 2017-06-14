@@ -1,6 +1,14 @@
 include-media-redux
 ====================
 
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
+[![NPM version][npm-version-image]][npm-url]
+[![NPM downloads][npm-downloads-image]][npm-url]
+[![MIT License][license-image]][license-url]
+
+[![Sauce Test Status][saucelabs-image]][saucelabs-url]
+
 >An adaptation of include-media-exports for redux.
 
 # Introduction
@@ -132,3 +140,16 @@ $ yarn release <semver level/version>
 $ yarn release patch # patch release
 $ yarn release 100.10.1 # release specific version
 ```
+
+[npm-url]: https://npmjs.org/package/include-media-redux
+[npm-version-image]: http://img.shields.io/npm/v/include-media-redux.svg?style=flat-square
+[npm-downloads-image]: http://img.shields.io/npm/dm/include-media-redux.svg?style=flat-square
+
+[coveralls-image]:https://coveralls.io/repos/github/wework/include-media-redux/badge.svg?branch=master
+[coveralls-url]:https://coveralls.io/github/wework/include-media-redux?branch=master
+
+[travis-url]:https://travis-ci.org/wework/include-media-redux
+[travis-image]: https://travis-ci.org/wework/include-media-redux.svg?branch=master
+
+[license-url]: LICENSE
+[license-image]: http://img.shields.io/badge/license-MIT-000000.svg?style=flat-square

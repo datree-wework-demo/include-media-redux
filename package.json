@@ -4,7 +4,7 @@
   "description": "An adaption of include-media-export for redux",
   "main": "dist/include-media-redux.js",
   "scripts": {
-    "bundle": "BABEL_DISABLE_CACHE=1 rollup -c --environment client",
+    "bundle": "rollup -c --environment client",
     "dist": "yarn bundle && yarn lint",
     "lint": "eslint --format ./node_modules/eslint-friendly-formatter --cache src test",
     "lint:staged": "eslint --format ./node_modules/eslint-friendly-formatter --cache",
@@ -17,11 +17,13 @@
     "security-scan": "nsp check --output summary --warn-only",
     "start": "yarn test && yarn dist",
     "test": "npm-run-all --parallel test:*:once",
+    "test:ci": "npm-run-all test:browser:once test:node:ci",
     "tdd": "npm-run-all --parallel test:*:tdd",
-    "test:browser:once": "BABEL_DISABLE_CACHE=1 NODE_ENV=test karma start test/karma.conf.js --no-auto-watch --single-run",
-    "test:browser:tdd": "BABEL_DISABLE_CACHE=1 NODE_ENV=test karma start test/karma.conf.js --auto-watch --no-single-run",
-    "test:node:once": "BABEL_DISABLE_CACHE=1 NODE_ENV=test nyc mocha test/runner test/specs/common/*.spec.js test/specs/common/**/*.spec.js",
+    "test:browser:once": "NODE_ENV=test karma start test/karma.conf.js --no-auto-watch --single-run",
+    "test:browser:tdd": "NODE_ENV=test karma start test/karma.conf.js --auto-watch --no-single-run",
+    "test:node:once": "NODE_ENV=test nyc mocha test/runner test/specs/common/*.spec.js test/specs/common/**/*.spec.js",
     "test:node:tdd": "yarn test:node:once -- --cache --watch",
+    "test:node:ci": "yarn test:node:once && nyc report --reporter=text-lcov | coveralls",
     "version": "auto-changelog --template compact --package; git add CHANGELOG.md"
   },
   "repository": {
@@ -84,6 +86,7 @@
     "babel-register": "6.24.1",
     "chai": "4.0.2",
     "chai-enzyme": "0.7.1",
+    "coveralls": "2.13.1",
     "enzyme": "2.8.2",
     "eslint": "3.19.0",
     "eslint-config-prettier": "2.1.1",
